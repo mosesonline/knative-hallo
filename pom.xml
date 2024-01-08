@@ -76,6 +76,16 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <image>
+            <builder>paketobuildpacks/builder-jammy-tiny</builder>
+            <name>ghcr.io/mosesonline/knative-hello:${project.version}</name>
+            <env>
+              <BP_JVM_VERSION>${java.version}</BP_JVM_VERSION>
+            </env>
+          </image>
+          <createdDate>now</createdDate>
+        </configuration>
       </plugin>
     </plugins>
   </build>
