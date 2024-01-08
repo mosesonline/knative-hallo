@@ -16,7 +16,7 @@ jobs:
     # See: https://circleci.com/docs/configuration-reference/#steps
     steps:
       - checkout
-      - run: sudo apt install docker
+      - run: docker version 
       - run:
           name: "build native"
           command: "./mvnw -Pnative spring-boot:build-image"
