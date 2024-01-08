@@ -10,6 +10,7 @@ jobs:
     # See: https://circleci.com/docs/configuration-reference/#executor-job
     docker:
       - image: cimg/openjdk:21.0.0
+      - image: cimg/base:2024.01
     resource_class: arm.medium
     # Add steps to the job
     # See: https://circleci.com/docs/configuration-reference/#steps
