@@ -12,6 +12,7 @@ jobs:
       - image: cimg/openjdk:21.0.0
       - image: cimg/base:2024.01
     resource_class: "k3s-pi/k3sbig"
+    parallelism: 2
     # Add steps to the job
     # See: https://circleci.com/docs/configuration-reference/#steps
     steps:
