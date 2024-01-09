@@ -26,7 +26,6 @@ jobs:
           name: "build native"
           command: |
             export DOCKER_TLS_CERTDIR=
-            export DOCKER_HOST=tcp://localhost:2375
             ./mvnw -Pnative,arm-native spring-boot:build-image
       - run:
           name: "push"
