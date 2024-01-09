@@ -18,7 +18,10 @@ jobs:
       - checkout
       - run:
           name: Login Docker
-          command: docker login ghcr.io --username mosesonline -p $GHCR_TOKEN
+          command: |
+            export DOCKER_TLS_CERTDIR=
+            export DOCKER_HOST=tcp://localhost:2375
+            docker login ghcr.io --username mosesonline -p $GHCR_TOKEN
       - run:
           name: "build native"
           command: "./mvnw -Pnative,arm-native spring-boot:build-image"
