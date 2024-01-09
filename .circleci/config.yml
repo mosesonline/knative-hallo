@@ -16,8 +16,6 @@ jobs:
     # See: https://circleci.com/docs/configuration-reference/#steps
     steps:
       - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
       - run:
           name: Login Docker
           command: docker login ghcr.io --username mosesonline -p $GHCR_TOKEN
