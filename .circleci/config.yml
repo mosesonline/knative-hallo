@@ -23,11 +23,23 @@ jobs:
       - run:
           name: "build native"
           command: |
-            sudo ./mvnw -Pnative,arm-native spring-boot:build-image
+            sudo ./mvnw -Pnative,arm-native -DskipTests spring-boot:build-image
+          requires:
+            - checkout
+            - "Login Docker"
+      - run:
+          name: test
+          command: ./mvnw test
+          type: approval
+          requires:
+            - checkout
       - run:
           name: "push"
           command: |
             sudo docker push ghcr.io/mosesonline/knative-hello:0.0.1-SNAPSHOT
+          requires:
+            - "build native"
+            - test
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
