@@ -1,0 +1,23 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: knative-hello
+  namespace: knative-functions
+spec:
+  template:
+    spec:
+      serviceAccountName: knative-sa
+      containers:
+        - image: ghcr.io/mosesonline/knative-hello:0.0.1-SNAPSHOT
+          readinessProbe:
+            httpGet:
+              port: 8081
+              path: /actuator/health/readiness
+            initialDelaySeconds: 20
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              port: 8081
+              path: /actuator/health/liveness
+            initialDelaySeconds: 30
+            periodSeconds: 20       
