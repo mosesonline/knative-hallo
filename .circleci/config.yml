@@ -16,8 +16,9 @@ jobs:
     # See: https://circleci.com/docs/configuration-reference/#steps
     steps:
       - checkout
-      - setup_remote_docker
-      - run: docker version 
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run: echo "${GHCR_TOKEN}" | docker login --username mosesonline ghcr.io --password-stdin 
       - run:
           name: "build native"
           command: "./mvnw -Pnative,arm-native spring-boot:build-image"
