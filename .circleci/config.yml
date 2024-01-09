@@ -18,7 +18,9 @@ jobs:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: true
-      - run: docker login --username mosesonline -p ${GHCR_TOKEN} ghcr.io 
+      - run:
+          name: Login Docker
+          command: docker login --username mosesonline -p ${GHCR_TOKEN} ghcr.io 
       - run:
           name: "build native"
           command: "./mvnw -Pnative,arm-native spring-boot:build-image"
