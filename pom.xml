@@ -100,7 +100,7 @@
             <artifactId>spring-boot-maven-plugin</artifactId>
             <configuration>
               <image>
-                <builder>dashaun/builder-arm:tiny</builder>
+                <builder>dashaun/builder:tiny</builder>
                 <name>ghcr.io/mosesonline/knative-hello:${project.version}</name>
                 <env>
                   <BP_JVM_VERSION>${java.version}</BP_JVM_VERSION>
