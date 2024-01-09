@@ -11,7 +11,7 @@ jobs:
     docker:
       - image: cimg/openjdk:21.0.0
       - image: cimg/base:2024.01
-    resource_class: arm.medium
+    resource_class: "k3s-pi/k3sbig"
     # Add steps to the job
     # See: https://circleci.com/docs/configuration-reference/#steps
     steps:
@@ -20,7 +20,7 @@ jobs:
           docker_layer_caching: true
       - run:
           name: Login Docker
-          command: docker login ghcr.io --username mosesonline -p ${GHCR_TOKEN}
+          command: docker login ghcr.io --username mosesonline -p $GHCR_TOKEN
       - run:
           name: "build native"
           command: "./mvnw -Pnative,arm-native spring-boot:build-image"
