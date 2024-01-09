@@ -19,20 +19,15 @@ jobs:
       - run:
           name: Login Docker
           command: |
-            export DOCKER_TLS_CERTDIR=
-            export DOCKER_HOST=tcp://localhost:2375
-            docker login ghcr.io --username mosesonline -p $GHCR_TOKEN
+            sudo docker login ghcr.io --username mosesonline -p $GHCR_TOKEN
       - run:
           name: "build native"
           command: |
-            export DOCKER_TLS_CERTDIR=
-            ./mvnw -Pnative,arm-native spring-boot:build-image
+            sudo ./mvnw -Pnative,arm-native spring-boot:build-image
       - run:
           name: "push"
           command: |
-            export DOCKER_TLS_CERTDIR=
-            export DOCKER_HOST=tcp://localhost:2375
-            docker push ghcr.io/mosesonline/knative-hello:0.0.1-SNAPSHOT
+            sudo docker push ghcr.io/mosesonline/knative-hello:0.0.1-SNAPSHOT
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
